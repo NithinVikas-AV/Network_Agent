@@ -1,0 +1,9 @@
+sublist3r
+python-nmap
+theharvester
+whatweb
+dotenv
+langgraph
+langchain-mcp-adapters
+langchain-google-genai
+mcp[cli]
