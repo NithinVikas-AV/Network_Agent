@@ -1,6 +1,5 @@
-// src/App.jsx
 import { useEffect, useState } from "react";
-import { fetchHistory, sendMessage, generateReportAndDownload } from "./api";
+import { fetchHistory, sendMessage, generateReportAndDownload, clearChatHistory } from "./api";
 import "./app.css";
 
 export default function App() {
@@ -8,6 +7,7 @@ export default function App() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [reporting, setReporting] = useState(false);
+  const [clearing, setClearing] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -47,6 +47,18 @@ export default function App() {
     }
   };
 
+  const onClearChat = async () => {
+    setClearing(true);
+    try {
+      await clearChatHistory();
+      setMessages([]);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setClearing(false);
+    }
+  };
+
   return (
     <div className="container network-grid">
       <header className="app-header glass">
@@ -71,8 +83,13 @@ export default function App() {
             <span className="dot" />
             <span className="label">{loading ? "Processing" : "Agent Online"}</span>
           </div>
+
           <button onClick={onGenerateReport} disabled={reporting}>
-            {reporting ? "Generating..." : "Generate Report (PDF)"}
+            {reporting ? "Generating..." : "Generate Report"}
+          </button>
+
+          <button onClick={onClearChat} disabled={clearing}>
+            {clearing ? "Clearing..." : "Delete Chat History"}
           </button>
         </div>
       </header>
