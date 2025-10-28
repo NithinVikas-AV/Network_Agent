@@ -75,7 +75,7 @@ export default function App() {
               d="M3 7h18v2H3V7zm2 4h14v2H5v-2zm4 4h6v2H9v-2z"
             />
           </svg>
-          <h2>Network Tools Assistant</h2>
+          <h2>Reconn Forge</h2>
         </div>
 
         <div className="header-actions">
@@ -89,7 +89,7 @@ export default function App() {
           </button>
 
           <button onClick={onClearChat} disabled={clearing}>
-            {clearing ? "Clearing..." : "Delete Chat History"}
+            {clearing ? "Clearing..." : "Delete Chat "}
           </button>
         </div>
       </header>
